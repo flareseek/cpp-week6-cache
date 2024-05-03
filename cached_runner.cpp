@@ -15,7 +15,6 @@ double CachedRunner::multiply(std::string filename) {
     std::string key = "multiply(" + filename + ")";
 
     if (cache_->get(key, value)) {
-        std::cout << "cache hit multiply"<< std::endl;
         hits_ ++;
     } else {
         misses_ ++;
@@ -30,7 +29,6 @@ int CachedRunner::palindrome(std::string filename) {
     std::string key = "palindrome(" + filename + ")";
 
     if(cache_->get(key, value)) {
-        std::cout << "cache hit palindrome"<< std::endl;
         hits_ ++;
     } else {
         misses_ ++;

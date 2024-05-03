@@ -34,7 +34,37 @@ private:
   void removeCacheNode(CacheNode* node);
   void addCacheNode(CacheNode* node);
   void addCacheNode(std::string key, void* value, Type type);
+  void refreshCacheNode(CacheNode* node);
   void* getValue(std::string key, Type type);
+
+  struct HashNode {
+      std::string key;
+      CacheNode* value;
+
+      HashNode* prev;
+      HashNode* next;
+  };
+
+  struct HashList {
+      HashNode* tail;
+  };
+
+  HashList* hashMap_[CACHE_SIZE];
+
+  int hash(std::string key);
+  void addHashMap(std::string key, CacheNode* value);
+  void deleteHashMap(std::string key);
+  CacheNode* getHashMap(std::string key) {
+      int hashIndex = hash(key);
+      HashNode* temp = hashMap_[hashIndex]->tail;
+      while(temp != nullptr) {
+            if(temp->key == key) {
+                return temp->value;
+            }
+            temp = temp->prev;
+      }
+      return nullptr;
+  }
 
 public:
   Cache();
