@@ -4,6 +4,7 @@
 #include <string>
 
 #define CACHE_SIZE 10
+#define HASH_SIZE 10
 
 class Cache {
 private:
@@ -49,7 +50,7 @@ private:
       HashNode* tail;
   };
 
-  HashList* hashMap_[CACHE_SIZE];
+  HashList* hashMap_[HASH_SIZE];
 
   int hash(std::string key);
   void addHashMap(std::string key, CacheNode* value);

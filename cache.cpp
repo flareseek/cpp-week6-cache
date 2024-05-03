@@ -7,7 +7,7 @@ Cache::Cache() {
     head_ = nullptr;
     tail_ = nullptr;
 
-    for (int i = 0; i < CACHE_SIZE; i++) {
+    for (int i = 0; i < HASH_SIZE; i++) {
         HashList* hashList = new HashList;
         hashList->tail = nullptr;
         hashMap_[i] = hashList;
@@ -23,7 +23,7 @@ Cache::~Cache() {
     }
 
     // free hashmap
-    for (int i = 0; i < CACHE_SIZE; i++) {
+    for (int i = 0; i < HASH_SIZE; i++) {
         while(hashMap_[i]->tail != nullptr) {
             HashNode* temp = hashMap_[i]->tail;
             hashMap_[i]->tail = hashMap_[i]->tail->prev;
@@ -168,7 +168,7 @@ std::string Cache::toString() {
 int Cache::hash(std::string key) {
     int sum = 0;
     for (int i = 0; i < key.length(); i++) sum += key[i];
-    return sum % CACHE_SIZE;
+    return sum % HASH_SIZE;
 }
 
 void Cache::addHashMap(std::string key, CacheNode* value) {
