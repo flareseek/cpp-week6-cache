@@ -213,6 +213,7 @@ void Cache::deleteHashMap(std::string key) {
                 hashMap_[hashIndex]->tail = temp->prev;
 
             delete temp;
+            return;
         }
         temp = temp->prev;
     }
